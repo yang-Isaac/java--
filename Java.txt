@@ -1,0 +1,43 @@
+请求行（）
+GET /day01/hello?number=1&city=wh&city=cs HTTP/1.1
+消息头（）
+Host: localhost:8080
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3610.2 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+实体内容（消息正文）：只有请求方式是post时，才会有数据
+
+
+
+
+
+
+HTTP/1.1 200 OK
+--状态行（协议/版本  状态码  状态描述）
+Server: Apache-Coyote/1.1
+Content-Type: text/html;charset=ISO-8859-1
+Content-Length: 22
+Date: Wed, 26 Dec 2018 02:16:10 GMT
+实体内容：程序处理的结果
+
+
+###访问数据库
+create database jsd1809db default character set utf8;
+use jsd1809db;
+create table t_user(id int primary key auto_increment,username varchar(50) unique,password varchar(30), email varchar(50));
+
+
+
+
+
+
+
+
+
+
+
+
+
