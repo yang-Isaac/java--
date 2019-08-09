@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.store.mapper.GoodsMapper">
+
+<!--List<Goods>findHotGoods(Integer count)  -->
+<!--获取热销商品的列表  -->
+	<select id="findHotGoods" resultType="cn.tedu.store.entity.Goods">
+	select 
+		id,title,price,image
+	from
+		t_goods
+	where
+		status=1
+	order by
+		priority desc
+	limit
+		0,#{count}
+	</select>
+	
+	<!-- 根据商品id查询商品详情 -->
+	<!-- Goods findById(Long id) -->
+	<select id="findById"
+		resultType="cn.tedu.store.entity.Goods">
+		SELECT 
+			id, title,
+			item_type AS itemType,
+			sell_point AS sellPoint,
+			price, num,
+			image, status
+		FROM 
+			t_goods 
+		WHERE 
+			id=#{id}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+

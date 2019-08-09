@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.store.mapper.UserMapper">
+	<!--插入用户数据  -->
+	<!-- Integer addnew (User user) -->
+	<insert id="addnew">
+	INSERT INTO t_user (
+		username, password,salt,
+		gender,avatar, phone,
+		email,is_delete,created_user,created_time,modified_user,modified_time
+	) VALUES (
+		#{username}, #{password},#{salt},
+		#{gender},#{avatar}, #{phone},
+		#{email},#{isDelete},#{createdUser},#{createdTime},#{modifiedUser},
+		#{modifiedTime}
+	)
+	</insert>
+	
+	<!-- 根据用户名查询用户信息 -->
+	<!-- User findByUsername(String username); -->
+	<select id="findByUsername"
+		resultType="cn.tedu.store.entity.User">
+		SELECT 
+			uid,username,password,salt,is_delete AS isDelete
+		FROM 
+			t_user 
+		WHERE 
+			username=#{username}
+	</select>
+
+	<!-- 更新用户的密码 -->
+	<!--Integer updatePassword(
+			@Param("uid")Integer uid,
+			@Param("username")String username,
+			@Param("password")String password,
+			@Param("modifiedTime")Data modifiedTime);  -->
+	<update id="updatePassword">
+		update t_user 
+		set 
+		password=#{password},
+		modified_user=#{modifiedUser},
+		modified_time=#{modifiedTime}
+		where uid=#{uid}
+	</update>
+	
+	<!-- 根据用户id查询用户信息 -->
+	<!--  User findByUid -->
+	<select id="findByUid" resultType="cn.tedu.store.entity.User">
+		select
+		username,phone,email,gender,password,salt,is_delete as isDelete
+		from
+			t_user
+		where
+			uid=#{uid}
+	</select>
+	
+	<!--Integer updateInfo(User user)  -->
+	<!-- 修改用户数据 -->
+	<update id="updateInfo">
+		update t_user set
+		phone=#{phone},email=#{email},gender=#{gender},
+		modified_user=#{modifiedUser},modified_time=#{modifiedTime}
+		where
+		uid=#{uid}
+	</update>
+	
+	<!--更新头像  -->
+	<update id="updateAvatar">
+	update 
+		t_user 
+	set 
+		avatar=#{avatar},
+		modified_user=#{modifiedUser},
+		modified_time=#{modifiedTime}
+	where 
+		uid=#{uid}
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
